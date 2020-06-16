@@ -4,7 +4,7 @@
 There is also [sharp-loader](https://www.npmjs.com/package/sharp-loader), but I needed a loader which allows access to the entire [Sharp API](http://sharp.dimens.io/en/stable/), and would return a (one) image instead of a (responsive) set. This also allows subsequent loaders (e.g. [image-webpack-loader](https://www.npmjs.com/package/image-webpack-loader)) to execute succesfully.
 
 ## Install
-`$ npm install sharp-image-loader`
+`$ npm install sharp sharp-image-loader`
 
 ## Options
 ```js
