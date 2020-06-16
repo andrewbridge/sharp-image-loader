@@ -71,7 +71,7 @@ const numericOptions = [
   'tiffXres',
   'tiffYres',
   'tileSize',
-  'tileOverlap',
+  'tileOverlap'
 ];
 
 // Exports.
@@ -94,7 +94,7 @@ module.exports = function (source, map) {
     if (numericOptions.includes(key)) {
       config[key] = Number(value);
     }
-  })
+  });
 
   // Transform the source.
   const transformer = sharp(source);
