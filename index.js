@@ -30,6 +30,50 @@
 const loaderUtils = require('loader-utils');
 const sharp = require('sharp');
 
+const numericOptions = [
+  'limitInputPixels',
+  'topOffsetPre',
+  'topOffsetPre',
+  'leftOffsetPre',
+  'widthPre',
+  'heightPre',
+  'topOffsetPost',
+  'leftOffsetPost',
+  'widthPost',
+  'heightPost',
+  'width',
+  'height',
+  'canvas',
+  'crop',
+  'angle',
+  'extendTop',
+  'extendBottom',
+  'extendLeft',
+  'extendRight',
+  'blurSigma',
+  'sharpenSigma',
+  'sharpenFlat',
+  'sharpenJagged',
+  'threshold',
+  'trimTolerance',
+  'gamma',
+  'normalise',
+  'extractChannel',
+  'overlayGravity',
+  'overlayXOffset',
+  'overlayYOffset',
+  'withMetadataOrientation',
+  'jpegQuality',
+  'pngCompressionLevel',
+  'webpQuality',
+  'webpAlphaQuality',
+  'tiffQuality',
+  'tiffXres',
+  'tiffYres',
+  'tileSize',
+  'tileOverlap',
+];
+
 // Exports.
 module.exports = function (source, map) {
   // Extract.
@@ -45,6 +89,12 @@ module.exports = function (source, map) {
     const resourceConfig = loaderUtils.getOptions({ query: context.resourceQuery });
     config = Object.assign({ }, config, resourceConfig);
   }
+
+  Object.entries(config).forEach(([key, value]) => {
+    if (numericOptions.includes(key)) {
+      config[key] = Number(value);
+    }
+  })
 
   // Transform the source.
   const transformer = sharp(source);
